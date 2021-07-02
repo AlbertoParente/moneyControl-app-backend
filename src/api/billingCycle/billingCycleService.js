@@ -1,12 +1,22 @@
-const Billingcycle = require('./billingCycle')
+const BillingCycle = require('./billingCycle')
 const errorHandler = require('../common/errorHandler')
 
-Billingcycle.methods(['get', 'post', 'put', 'delete'])
-Billingcycle.updateOptions({ new: true, runValidators: true })
-Billingcycle.after('post', errorHandler).after('put', errorHandler)
+BillingCycle.methods(['get', 'post', 'put', 'delete'])
+BillingCycle.updateOptions({ new: true, runValidators: true })
+BillingCycle.after('post', errorHandler).after('put', errorHandler)
 
-Billingcycle.route('count', (red, res, next) => {
-    Billingcycle.count((error, value) => {
+BillingCycle.route('get', (req, res, next) => {
+    BillingCycle.find({}, (err, docs) => {
+        if (!err) {
+            res.json(docs)
+        } else {
+            res.status(500).json({ errors: [error] })
+        }
+    })
+})
+
+BillingCycle.route('count', (red, res, next) => {
+    BillingCycle.count((error, value) => {
         if (error) {
             res.status(500).json({ errors: [error] })
         } else {
@@ -31,4 +41,4 @@ BillingCycle.route('summary', (req, res, next) => {
     })
 })
 
-module.exports = Billingcycle
+module.exports = BillingCycle

@@ -14,3 +14,5 @@ server.use(queryParser())
 server.listen(port, function() {
     console.log(`Backend is running on port ${port}.`)
 })
+
+module.exports = server
