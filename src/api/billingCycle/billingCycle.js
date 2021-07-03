@@ -7,30 +7,42 @@ const creditSchema = new mongoose.Schema({
 })
 
 const debtSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    value: { type: Number, min: 0, required: [true, 'Enter the debit amount!'] },
-    status: { type: String, required: false, uppercase: true, enum: ['Pay', 'Pending', 'Planned'] }
-})
-
-const covenantSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    value: { type: Number, min: 0, required: true }
-})
-
-const termOfPaymentSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    value: { type: Number, min: 0, required: [true, 'Enter the covenant amount!'] },
-    status: { type: String, required: false, uppercase: true, enum: ['Pay', 'Pending', 'Planned'] }
+    name: {
+        type: String,
+        required: true
+    },
+    value: {
+        type: Number,
+        min: 0,
+        required: [true, 'Enter the debit amount!']
+    },
+    status: {
+        type: String,
+        required: false,
+        uppercase: true,
+        enum: ['Pay', 'Pending', 'Planned']
+    }
 })
 
 const billingCycleSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    month: { type: Number, min: 1, max: 12, required: true },
-    year: { type: Number, min: 1970, max: 2100, required: true },
+    name: {
+        type: String,
+        required: true
+    },
+    month: {
+        type: Number,
+        min: 1,
+        max: 12,
+        required: true
+    },
+    year: {
+        type: Number,
+        min: 1970,
+        max: 2100,
+        required: true
+    },
     credits: [creditSchema],
-    debts: [debtSchema],
-    covenant: [covenantSchema],
-    termOfPayment: [termOfPaymentSchema]
+    debts: [debtSchema]
 
 })
 
