@@ -11,8 +11,8 @@ module.exports = (req, res, next) => {
     }
 }
 
-const parserErrors = (nodeRestfulErros) => {
+const parseErrors = (nodeRestfulErros) => {
     const errors = []
-    _.forIn(nodeRestfulErros, errors => errors.push(error.message))
+    _.forIn(nodeRestfulErros, error => errors.push(error.message))
     return errors
 }
